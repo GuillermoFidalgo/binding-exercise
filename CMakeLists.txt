@@ -13,6 +13,10 @@ FetchContent_MakeAvailable(eigen)
 
 if(DEFINED SKBUILD)
   # ... Fill me in!
+  find_package(pybind11 CONFIG REQUIRED)
+  pybind11_add_module(main src/main.cpp src/integrator.hpp src/_core.cpp)
+  install(TARGETS _core DESTINATION .)
+
 else()
   add_executable(main src/main.cpp src/integrator.hpp)
   target_include_directories(main PRIVATE src "${eigen_SOURCE_DIR}")
